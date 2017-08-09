@@ -2,6 +2,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -17,19 +18,21 @@ import java.util.concurrent.TimeoutException;
  * This class use...
  */
 public class Parse {
-    private List<DomainContainer> domains;
+    //private List<DomainContainer> domains;
+    private DefaultListModel<DomainContainer> domains;
     private URI uri;
 
     public Parse() {
-        domains = new ArrayList<DomainContainer>();
+        //domains = new ArrayList<DomainContainer>();
+        domains = new DefaultListModel<>();
     }
 //TODO - wrong domain handler
-    public Document getHtml(String URL) throws TimeoutException, IOException {
-        Document doc = Jsoup.connect(URL).get();
-        return doc;
+public Document getHtml(String URL) throws IOException, IllegalArgumentException, TimeoutException {
+
+    return Jsoup.connect(URL).get();
     }
 
-    public List<DomainContainer> ParseHTML(Document document) {
+    public DefaultListModel<DomainContainer> ParseHTML(Document document) {
         HashMap<String, Integer> host_position = new HashMap<String, Integer>();
         Elements elements = document.select("a[href]");
 
@@ -46,14 +49,14 @@ public class Parse {
                     this.domains.get(host_position.get(hostname)).incrementDomainCounter();
                 } else {
                     DomainContainer domainContainer = new DomainContainer(hostname);
-                    this.domains.add(domainContainer);
+                    this.domains.addElement(domainContainer);
                     host_position.put(hostname, this.domains.size() - 1);
                 }
         }
         return this.domains;
     }
 
-    public List<DomainContainer> getDomains() {
+    public DefaultListModel<DomainContainer> getDomains() {
         return domains;
     }
 }
