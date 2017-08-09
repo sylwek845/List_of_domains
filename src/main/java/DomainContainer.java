@@ -30,7 +30,7 @@ public class DomainContainer {
 
     @Override
     public String toString() {
-        return "Domain - " + getDomainHost() + " Count - " + getDomainCount();
+        return getDomainHost() + " - " + getDomainCount();
     }
 
 

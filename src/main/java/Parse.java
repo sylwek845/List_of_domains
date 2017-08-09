@@ -26,7 +26,6 @@ public class Parse {
         //domains = new ArrayList<DomainContainer>();
         domains = new DefaultListModel<>();
     }
-//TODO - wrong domain handler
 public Document getHtml(String URL) throws IOException, IllegalArgumentException, TimeoutException {
 
     return Jsoup.connect(URL).get();
@@ -43,7 +42,12 @@ public Document getHtml(String URL) throws IOException, IllegalArgumentException
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
-            String hostname = uri.getHost().replace("www.","");
+            String hostname = null;
+            try {
+                hostname = uri.getHost().replace("www.", "");
+            } catch (Exception e) {
+            }
+
             if (hostname != null)
                 if (host_position.containsKey(hostname)) {
                     this.domains.get(host_position.get(hostname)).incrementDomainCounter();
