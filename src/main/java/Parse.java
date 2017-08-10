@@ -13,22 +13,20 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * Created by : Sylwester Zalewski
- * Date: 08/08/2017
+ * Date: 09/09/2017
  * <p>
- * This class use...
+ * This class is used to download and parse URL provided.
  */
-public class Parse {
-    //private List<DomainContainer> domains;
+class Parse {
     private DefaultListModel<DomainContainer> domains;
     private URI uri;
 
     public Parse() {
-        //domains = new ArrayList<DomainContainer>();
         domains = new DefaultListModel<>();
     }
-public Document getHtml(String URL) throws IOException, IllegalArgumentException, TimeoutException {
 
-    return Jsoup.connect(URL).get();
+    public Document getHtml(String URL) throws IOException, IllegalArgumentException, TimeoutException {
+        return Jsoup.connect(URL).get();
     }
 
     public DefaultListModel<DomainContainer> ParseHTML(Document document) {
@@ -45,7 +43,7 @@ public Document getHtml(String URL) throws IOException, IllegalArgumentException
             String hostname = null;
             try {
                 hostname = uri.getHost().replace("www.", "");
-            } catch (Exception e) {
+            } catch (Exception e) {//if error continue
             }
 
             if (hostname != null)
@@ -58,9 +56,5 @@ public Document getHtml(String URL) throws IOException, IllegalArgumentException
                 }
         }
         return this.domains;
-    }
-
-    public DefaultListModel<DomainContainer> getDomains() {
-        return domains;
     }
 }

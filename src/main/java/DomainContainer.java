@@ -1,10 +1,10 @@
 /**
  * Created by : Sylwester Zalewski
- * Date: 08/08/2017
+ * Date: 09/09/2017
  *
- * This class use...
+ * This class used to store all the information about domain
  */
-public class DomainContainer {
+class DomainContainer {
     private String domainHost;
     private int domainCount;
 

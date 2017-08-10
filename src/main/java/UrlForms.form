@@ -28,7 +28,7 @@
           <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Enter Url"/>
+          <text value="Please Enter Url Below"/>
         </properties>
       </component>
       <scrollpane id="25d61">
